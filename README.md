@@ -16,10 +16,15 @@ And when you are `git commit` using vim, you can type `:TT` and it will show a p
 
 ## Road map
 
-- [ ] get current repo information by reading file in .git folder
+- [x] get current repo information by reading file in .git folder
 - [ ] make api calls to github to get the issue list
 - [ ] allow filter issues in the command
 - [ ] allow search issues
 - [ ] support Chinese
 - [ ] cache issues and add command for fetch
 - [ ] add it to auto completion when type `Fix #` it will pop up recent issues  
+
+## Ref
+
+- https://github.com/JarrodCTaylor/vim-plugin-starter-kit
+- http://vimdoc.sourceforge.net/htmldoc/if_pyth.html  The python interface for vim
