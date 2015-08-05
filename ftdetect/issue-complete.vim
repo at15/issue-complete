@@ -1,0 +1,1 @@
+au BufNewFile,BufRead COMMIT_MSG set filetype=COMMIT_MSG
