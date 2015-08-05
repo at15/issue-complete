@@ -23,7 +23,6 @@ just put a `test.vim` in `~/.vim/plugin` and it will work
 create a symbol link for dev
 
 `ln -s ~/github/issue-complete/ftplugin/COMMIT_EDITMSG/issue-complete.vim ~/.vim/ftplugin/COMMIT_EDITMSG`
+`ln -s ~/github/issue-complete/ftplugin/COMMIT_EDITMSG/issue.py ~/.vim/ftplugin/COMMIT_EDITMSG`
 
-TODO: but need call `set filetype=COMMIT_EDITMSG` in vim, why can't detect it.
-
-fixed using ftdetect http://learnvimscriptthehardway.stevelosh.com/chapters/44.html
+using ftdetect http://learnvimscriptthehardway.stevelosh.com/chapters/44.html

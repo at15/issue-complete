@@ -3,15 +3,23 @@ if !has('python')
 	finish
 endif
 
-function Meow()
-  echom "Meow!"
+python import sys
+python import vim
+python sys.path.append(vim.eval('expand("<sfile>:h")'))
+
+function GitIssue()
+  echom "Show me the issue"
 
 python << endOfPython
 
 print "I am printing!"
 
+from issue import hi
+
+hi()
+
 endOfPython
 
 endfunction
 
-command! TT call Meow()
+command! Is call GitIssue()
