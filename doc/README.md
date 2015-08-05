@@ -22,8 +22,8 @@ just put a `test.vim` in `~/.vim/plugin` and it will work
 
 create a symbol link for dev
 
-`ln -s ~/github/issue-complete/ftplugin/COMMIT_MSG/issue-complete.vim ~/.vim/ftplugin/COMMIT_MSG`
+`ln -s ~/github/issue-complete/ftplugin/COMMIT_EDITMSG/issue-complete.vim ~/.vim/ftplugin/COMMIT_EDITMSG`
 
-TODO: but need call `set filetype=COMMIT_MSG` in vim, why can't detect it.
+TODO: but need call `set filetype=COMMIT_EDITMSG` in vim, why can't detect it.
 
 fixed using ftdetect http://learnvimscriptthehardway.stevelosh.com/chapters/44.html

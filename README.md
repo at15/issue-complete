@@ -9,4 +9,7 @@ so we need
 - show hint in editor, maybe I should write a vim plugin (but I hardly use vim except editing commit messages)
 - use electron to write a cross platform editor. ( e... it would be really slow, but there is way we can check if there is a electron instance running, and hold a long tcp connection until user finish editing in the electron editor, this could be a atom plugin i think .... )
 
-I think I prefer the vim one ... 
+## Install
+
+I just start learning vim, so I just link `ftdetect` and `ftplugin` to my `~/.vim`
+And when you are `git commit` using vim, you can type `:TT` and it will show a print.
