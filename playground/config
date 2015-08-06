@@ -4,8 +4,11 @@
 	bare = false
 	logallrefupdates = true
 [remote "origin"]
-	url = git@github.com:at15/issue-complete.git
+	url = git@github.com:at15/assets-bower-ci.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
+[branch "refactor"]
+	remote = origin
+	merge = refs/heads/refactor
