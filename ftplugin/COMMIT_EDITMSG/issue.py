@@ -1,7 +1,6 @@
-import json
-import requests
 import vim
 import re
+import requests
 
 
 class GitRepo:
@@ -37,15 +36,17 @@ class GitRepo:
         # TODO: error handling
         return "https://api.github.com/repos/" + self.user_name + "/" + self.repo_name + "/issues"
 
-def hi():
-    # url = "https://api.github.com/repos/at15/issue-complete/issues"
-    # r = requests.get(url)
-    # print r.json()
-    #print "Hi !"
-    repo()
+    def get_issues(self):
+        r = requests.get(self.issue_url())
+        issues = r.json()
+        simplified_issues = []
+        for issue in issues:
+            simplified_issues.append({
+                'title': issue['title']
+            })
+        print simplified_issues
 
 
-# get the repo of current file
-def repo():
-    r = GitRepo('.git/config')
-    # TODO: prase the text and get github url to get issues
+def list_all():
+    repo = GitRepo('.git/config')
+    repo.get_issues()

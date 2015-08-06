@@ -1,5 +1,5 @@
 if !has('python')
-  echom "No python!"
+    echom "No python!"
 	finish
 endif
 
@@ -8,15 +8,12 @@ python import vim
 python sys.path.append(vim.eval('expand("<sfile>:h")'))
 
 function GitIssue()
-  echom "Show me the issue"
 
 python << endOfPython
 
-print "I am printing!"
+from issue import list_all
 
-from issue import hi
-
-hi()
+list_all()
 
 endOfPython
 
