@@ -24,7 +24,8 @@ class GitRepo:
             if lines[i] == '[remote "origin"]':
                 remote_url = lines[i + 1]
                 break
-        print "remote url is " + remote_url
+        # print "remote url is " + remote_url
+        # TODO: cache and show api process
         pattern = re.compile(r'.*github.com[:/](.*)/(.*).git')
         match = pattern.match(remote_url)
         user_name = match.group(1)
@@ -42,9 +43,13 @@ class GitRepo:
         simplified_issues = []
         for issue in issues:
             simplified_issues.append({
-                'title': issue['title']
+                'title': issue['title'],
+                'number': str(issue['number'])
             })
-        print simplified_issues
+        # print the issue names
+        for s in simplified_issues:
+            # TODO: use sprintf
+            print '#' + s['number'] + ' ' + s['title']
 
 
 def list_all():
