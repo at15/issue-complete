@@ -32,13 +32,20 @@ python sys.path.append(vim.eval('expand("<sfile>:h")'))
 
 function GitIssue()
 
+let res = []
+
 python << endOfPython
 
+import vim
 from issue import list_all
 
 list_all()
 
+vim.eval('add(res, "123")')
+
 endOfPython
+
+echo res
 
 endfunction
 

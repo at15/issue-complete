@@ -54,4 +54,4 @@ class GitRepo:
 
 def list_all():
     repo = GitRepo('.git/config')
-    repo.get_issues()
+    # repo.get_issues()
