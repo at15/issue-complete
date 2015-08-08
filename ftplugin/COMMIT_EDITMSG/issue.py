@@ -91,7 +91,7 @@ class GitRepo:
 
 def add_to_vim_list(list_name, issues):
     for issue in issues:
-        vim.eval('add(' + list_name + ', "' + issue['title'] + '")')
+        vim.eval('add(' + list_name + ', "' + '#' + issue['number'] + ' ' + issue['title'] + '")')
 
 
 def list_open_issues(config='.git/config'):
