@@ -1,11 +1,14 @@
 import re
 import requests
+import json
+import os
 
 
 class GitRepo:
     config = ""
     user_name = ""
     repo_name = ""
+    simplified_issues = []
 
     def __init__(self, config_file):
         f = open(config_file, 'r')
@@ -36,6 +39,7 @@ class GitRepo:
         # TODO: error handling
         return "https://api.github.com/repos/" + self.user_name + "/" + self.repo_name + "/issues"
 
+    # TODO: add timeout to avoid network problems
     def get_issues(self):
         r = requests.get(self.issue_url())
         issues = r.json()
@@ -49,9 +53,37 @@ class GitRepo:
         for s in simplified_issues:
             # TODO: use sprintf
             print '#' + s['number'] + ' ' + s['title']
+        self.simplified_issues = simplified_issues
+        self.save_cache()
+
+    def get_cached_issues(self):
+        self.read_cache()
+        return self.simplified_issues
+
+    def read_cache(self):
+        try:
+            f = open(self.cache_name(), 'r')
+            data = f.read()
+            self.simplified_issues = json.loads(data)
+            return True
+        except IOError:
+            print 'no cache'
+            return False
+
+    def save_cache(self):
+        if not os.path.exists('cache'):
+            os.makedirs('cache')
+        data = json.dumps(self.simplified_issues)
+        f = open(self.cache_name(), 'w')
+        f.write(data)
+        f.close()
+
+    def cache_name(self):
+        return 'cache/' + self.user_name + '_s_' + self.repo_name + '.cache'
 
 
-def list_all():
-    repo = GitRepo('.git/config')
-    print "List all !"
+def list_all(config='.git/config'):
+    repo = GitRepo(config)
+    print repo.cache_name()
     # repo.get_issues()
+    print repo.get_cached_issues()
