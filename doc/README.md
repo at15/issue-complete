@@ -26,3 +26,13 @@ create a symbol link for dev
 `ln -s ~/github/issue-complete/ftplugin/COMMIT_EDITMSG/issue.py ~/.vim/ftplugin/COMMIT_EDITMSG`
 
 using ftdetect http://learnvimscriptthehardway.stevelosh.com/chapters/44.html
+
+## Github
+
+### public api
+
+https://api.github.com/repos/<user-name>/<project-name>/issues
+
+## Gitlab
+
+TODO:
