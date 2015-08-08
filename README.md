@@ -6,8 +6,8 @@ Auto completion for github/gitlab issues when editing git commit messages using 
 
 ## Usage
 
-- `:GI` to fetch the issues for current project from github
-- `<C+X> <C+O>` to show omini completion 
+- `:UpdateIssue` to update issue cache
+- `<C+X> <C+O>` to show omini completion, it will fetch automatically if cache is not found 
 
 ## Install
 

@@ -22,9 +22,19 @@ issues = add_to_vim_list('res', list_open_issues())
 
 endOfPython
 
-echo res
-
 return res
+
+endfunction
+
+function UpdateIssue()
+
+python << endOfPython
+
+from issue import update_issues
+
+update_issues()
+
+endOfPython
 
 endfunction
 
@@ -40,4 +50,4 @@ function IssueComplete(findstart, base)
 endfunction
 
 setlocal omnifunc=IssueComplete
-command! GI call GetIssue()
+command! UpdateIssue call UpdateIssue()

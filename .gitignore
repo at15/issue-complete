@@ -33,3 +33,5 @@ playground/cache/*
 *.pyc
 
 cache/*
+
+ftplugin/COMMIT_EDITMSG/cache/*

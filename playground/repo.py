@@ -100,3 +100,8 @@ def add_to_vim_list(list_name, issues):
 def list_open_issues(config='.git/config'):
     repo = GitRepo(config)
     return repo.get_issues()
+
+
+def update_issues(config='.git/config'):
+    repo = GitRepo(config)
+    repo.get_api_issues()
