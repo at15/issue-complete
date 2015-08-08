@@ -2,6 +2,8 @@
 
 Auto completion for github/gitlab issues when editing git commit messages using vim
 
+![screen](screen.png)
+
 ## Usage
 
 - `:GI` to fetch the issues for current project from github
