@@ -78,15 +78,18 @@ class GitRepo:
             return False
 
     def save_cache(self):
-        if not os.path.exists('cache'):
-            os.makedirs('cache')
+        if not os.path.exists(self.cache_folder()):
+            os.makedirs(self.cache_folder())
         data = json.dumps(self.simplified_issues)
         f = open(self.cache_name(), 'w')
         f.write(data)
         f.close()
 
+    def cache_folder(self):
+        return os.path.dirname(os.path.realpath(__file__)) + '/cache'
+
     def cache_name(self):
-        return 'cache/' + self.user_name + '_s_' + self.repo_name + '.cache'
+        return self.cache_folder() + '/' + self.user_name + '_s_' + self.repo_name + '.cache'
 
 
 def add_to_vim_list(list_name, issues):
