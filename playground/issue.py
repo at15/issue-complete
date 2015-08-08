@@ -1,5 +1,8 @@
 __author__ = 'at15'
 import requests
+import repo
+import vim
+
 
 def parse_issue():
     r = requests.get("https://api.github.com/repos/at15/issue-complete/issues")
@@ -12,4 +15,7 @@ def parse_issue():
         })
     print simplified_issues
 
-parse_issue()
+# parse_issue()
+
+repo.add_to_vim_list('res', repo.list_open_issues('config'))
+

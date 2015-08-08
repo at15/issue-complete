@@ -1,11 +1,16 @@
 import re
 import requests
+import json
+import os
+
+import vim
 
 
 class GitRepo:
     config = ""
     user_name = ""
     repo_name = ""
+    simplified_issues = []
 
     def __init__(self, config_file):
         f = open(config_file, 'r')
@@ -37,6 +42,16 @@ class GitRepo:
         return "https://api.github.com/repos/" + self.user_name + "/" + self.repo_name + "/issues"
 
     def get_issues(self):
+        if not self.get_cached_issues():
+            self.get_api_issues()
+        return self.simplified_issues
+
+    def get_cached_issues(self):
+        self.read_cache()
+        return self.simplified_issues
+
+    # TODO: add timeout to avoid network problems
+    def get_api_issues(self):
         r = requests.get(self.issue_url())
         issues = r.json()
         simplified_issues = []
@@ -49,9 +64,36 @@ class GitRepo:
         for s in simplified_issues:
             # TODO: use sprintf
             print '#' + s['number'] + ' ' + s['title']
+        self.simplified_issues = simplified_issues
+        self.save_cache()
+
+    def read_cache(self):
+        try:
+            f = open(self.cache_name(), 'r')
+            data = f.read()
+            self.simplified_issues = json.loads(data)
+            return True
+        except IOError:
+            print 'no cache'
+            return False
+
+    def save_cache(self):
+        if not os.path.exists('cache'):
+            os.makedirs('cache')
+        data = json.dumps(self.simplified_issues)
+        f = open(self.cache_name(), 'w')
+        f.write(data)
+        f.close()
+
+    def cache_name(self):
+        return 'cache/' + self.user_name + '_s_' + self.repo_name + '.cache'
 
 
-def list_all():
-    repo = GitRepo('.git/config')
-    print "List all !"
-    # repo.get_issues()
+def add_to_vim_list(list_name, issues):
+    for issue in issues:
+        vim.eval('add(' + list_name + ', "' + issue['title'] + '")')
+
+
+def list_open_issues(config='.git/config'):
+    repo = GitRepo(config)
+    return repo.get_issues()

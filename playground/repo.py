@@ -3,6 +3,8 @@ import requests
 import json
 import os
 
+import vim
+
 
 class GitRepo:
     config = ""
@@ -39,8 +41,17 @@ class GitRepo:
         # TODO: error handling
         return "https://api.github.com/repos/" + self.user_name + "/" + self.repo_name + "/issues"
 
-    # TODO: add timeout to avoid network problems
     def get_issues(self):
+        if not self.get_cached_issues():
+            self.get_api_issues()
+        return self.simplified_issues
+
+    def get_cached_issues(self):
+        self.read_cache()
+        return self.simplified_issues
+
+    # TODO: add timeout to avoid network problems
+    def get_api_issues(self):
         r = requests.get(self.issue_url())
         issues = r.json()
         simplified_issues = []
@@ -55,10 +66,6 @@ class GitRepo:
             print '#' + s['number'] + ' ' + s['title']
         self.simplified_issues = simplified_issues
         self.save_cache()
-
-    def get_cached_issues(self):
-        self.read_cache()
-        return self.simplified_issues
 
     def read_cache(self):
         try:
@@ -82,8 +89,11 @@ class GitRepo:
         return 'cache/' + self.user_name + '_s_' + self.repo_name + '.cache'
 
 
-def list_all(config='.git/config'):
+def add_to_vim_list(list_name, issues):
+    for issue in issues:
+        vim.eval('add(' + list_name + ', "' + issue['title'] + '")')
+
+
+def list_open_issues(config='.git/config'):
     repo = GitRepo(config)
-    print repo.cache_name()
-    # repo.get_issues()
-    print repo.get_cached_issues()
+    return repo.get_issues()
