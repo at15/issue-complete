@@ -1,1 +1,1 @@
-au BufNewFile,BufRead COMMIT_EDITMSG set filetype=COMMIT_EDITMSG
+au BufNewFile,BufRead COMMIT_EDITMSG set filetype=gitcommit
