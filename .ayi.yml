@@ -1,0 +1,4 @@
+scripts:
+        sync:
+                - cp ftplugin/COMMIT_EDITMSG/*.vim ~/.vim/plugged/issue-complete/ftplugin/COMMIT_EDITMSG
+
